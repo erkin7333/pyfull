@@ -1,5 +1,25 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    <a href="#" onclick="alert($)" class="btn btn-success">OK</a>
+    <table class="table table-bordered table-hover table-striped">
+    <thead>
+    <tr>
+        <th>Sarlavhasi</th>
+        <th>Qo'shilgan sanasi</th>
+        <th>Harakatlar</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for row in list %}
+        <tr>
+        <td>{{ row.subject }}</td>
+        <td>{{ row.added_at }}</td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="3">Birorta ham post topilmadi</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
 {% endblock %}

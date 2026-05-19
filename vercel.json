@@ -13,6 +13,9 @@
       "dest": "/main/static/$1"
     },
     {
+      "handle": "filesystem"
+    },
+    {
       "src": "/(.*)",
       "dest": "pyfull/wsgi.py"
     }

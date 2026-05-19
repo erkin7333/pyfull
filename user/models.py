@@ -11,8 +11,10 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     objects = UserManager()
 
-    # password = models.CharField(('password'), max_length=128)
     phone = models.CharField(max_length=15, unique=True, default=None, null=True,
                              validators=[PhoneValidator()])
-
+    group_name = models.CharField(max_length=120, blank=True, null=True)
+    address = models.CharField(max_length=255, blank=True, null=True)
+    birth_date = models.DateField(blank=True, null=True)
+    image = models.ImageField(upload_to='users/', blank=True, null=True)
 

@@ -11,8 +11,7 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'Post'
         verbose_name_plural = 'Postlar'
-        index_together  = (
-            ('user', 'added_at'),
-            ('added_at',)
-        )
-
+        indexes = [
+            models.Index(fields=['user', 'added_at']),
+            models.Index(fields=['added_at']),
+        ]

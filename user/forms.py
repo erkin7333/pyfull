@@ -27,7 +27,10 @@ class LoginForm(forms.Form):
 class EditForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ['username', 'phone', 'first_name', 'last_name', 'email']
+        fields = ['username', 'phone', 'first_name', 'last_name', 'email', 'group_name', 'address', 'birth_date', 'image']
+        widgets = {
+            'birth_date': forms.DateInput(attrs={'type': 'date'})
+        }
 
 
     # username = forms.CharField(max_length=20, required=True,

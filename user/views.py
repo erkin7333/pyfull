@@ -50,7 +50,7 @@ def user_login(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, 'Xush kelibsiz!! {}'.format(user.first_name))
-                return redirect('main:index')
+                return redirect('user:profile')
             form.add_error('password', "Username va/yoki parol noto'g'ri. ")
 
     return render(request, 'user/login.html', {
@@ -73,10 +73,17 @@ def user_info(request):
     })
 
 
+@require_GET
+@login_required
+def user_profile(request):
+    request.title = 'Profil'
+    return render(request, 'user/profile.html')
+
+
 @require_POST
 @login_required
 def user_info_post(request):
-    form = EditForm(data=request.POST, instance=request.user)
+    form = EditForm(data=request.POST, files=request.FILES, instance=request.user)
     if form.is_valid():
         form.save()
         messages.success(request, "Saqlandi")

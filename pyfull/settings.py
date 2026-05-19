@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import environ
+import dj_database_url
+from decouple import config
 from django.contrib import messages
 
 env = environ.Env(
@@ -92,8 +94,12 @@ WSGI_APPLICATION = 'pyfull.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+
+
 DATABASES = {
-    'default': env.db(default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}")
+    "default": dj_database_url.parse(
+        config("DATABASE_URL")
+    )
 }
 
 

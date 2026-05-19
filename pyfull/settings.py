@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import environ
 import dj_database_url
+import os
 from decouple import config
 from django.contrib import messages
 
@@ -139,13 +140,15 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = BASE_DIR / 'static'
+if os.environ.get("VERCEL"):
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = "/tmp/media"
+else:
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "media"
 STATICFILES_DIRS = []
 WHITENOISE_USE_FINDERS = True
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
 AUTH_USER_MODEL = 'user.User'
 

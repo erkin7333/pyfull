@@ -5,3 +5,4 @@ crispy-bootstrap4==2026.2
 django-debug-toolbar==6.3.0
 phonenumbers==9.0.30
 Pillow==12.2.0
+whitenoise==6.11.0
